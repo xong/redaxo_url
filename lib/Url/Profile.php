@@ -307,7 +307,7 @@ class Profile
         for ($index = 1; $index <= self::SEGMENT_PART_COUNT; ++$index) {
             if ($dataset->hasValue(self::ALIAS.'_segment_part_'.$index)) {
                 $concatSegmentParts .= $this->getSegmentPartSeparators()[$index] ?? '';
-                $concatSegmentParts .= Url::getRewriter()->normalize($dataset->getValue(self::ALIAS.'_segment_part_'.$index), $clangId);
+                $concatSegmentParts .= Url::getRewriter()->normalize($dataset->getValue(self::ALIAS.'_segment_part_'.$index) ?? '', $clangId);
             }
         }
         $dataPath->appendPathSegments(explode('/', $concatSegmentParts), $clangId);
@@ -320,7 +320,7 @@ class Profile
                 for ($index = 1; $index <= self::SEGMENT_PART_COUNT; ++$index) {
                     if ($dataset->hasValue($relation->getAlias().'_segment_part_'.$index)) {
                         $concatSegmentParts .= $relation->getSegmentPartSeparators()[$index] ?? '';
-                        $concatSegmentParts .= Url::getRewriter()->normalize($dataset->getValue($relation->getAlias().'_segment_part_'.$index), $clangId);
+                        $concatSegmentParts .= Url::getRewriter()->normalize($dataset->getValue($relation->getAlias().'_segment_part_'.$index) ?? '', $clangId);
                     }
                 }
                 if ($relation->getSegmentPosition() === 'BEFORE') {
